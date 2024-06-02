@@ -13,7 +13,6 @@ This is a simple Django-based weather application that allows users to search fo
 - Django
 - HTML
 - CSS (Bootstrap 4.5.2)
-- JavaScript
 - OpenWeatherMap API
 
 
