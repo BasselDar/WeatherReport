@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Weather Report</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom CSS for additional styling -->
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+            margin-bottom: 50px;
+            border: none;
+            border-radius: 0;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .form-horizontal {
+            margin-top: 50px;
+        }
+        .input-group {
+            max-width: 500px;
+            margin: auto;
+        }
+        .panel {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .panel-heading {
+            background: rgba(0, 0, 0, 0.2);
+            border: none;
+            border-radius: 10px 10px 0 0;
+            padding: 15px;
+        }
+        .panel-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .panel-body {
+            padding: 20px;
+        }
+        .alert {
+            max-width: 500px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Weather Report</a>
+        </div>
+    </nav>
+
+    <div class="container text-center">
+        <form action="" method="post" class="form-horizontal">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="city" placeholder="Enter city name" required>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="glyphicon glyphicon-search"></i> Search
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <br />
+        {% if data.error %}
+        <div class="alert alert-danger">
+            {{ data.error }}
+        </div>
+        {% elif data.country_code %}
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ city | capfirst }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p><strong>Country Code:</strong> {{ data.country_code }}</p>
+                        <p><strong>Coordinate:</strong> {{ data.coordinate }}</p>
+                        <p><strong>Temperature:</strong> {{ data.temp }}</p>
+                        <p><strong>Pressure:</strong> {{ data.pressure }} hPa</p>
+                        <p><strong>Humidity:</strong> {{ data.humidity }}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
