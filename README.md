@@ -6,7 +6,6 @@ This is a simple Django-based weather application that allows users to search fo
 
 - Search for weather information by city name
 - Displays city name, country code, coordinates, temperature, pressure, and humidity
-- Dynamic city name suggestions using the OpenWeatherMap API
 
 ## Technologies Used
 
